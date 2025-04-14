@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package telemetry;
+
+import "google/protobuf/empty.proto";  // Import Empty message
+
+message DistroRequest {}
+
+message MemoryRequest {}
+
+message DistroInfo {
+  string distro = 1;
+  string cpu_arch = 2;
+  int32 core_count = 3;
+  string distro_ver = 4;
+}
+
+message MemoryInfo {
+  float free_memory = 1;
+  float used_memory = 2;
+  float total_memory = 3;
+}
+
+message TelemetryResponse {
+  string status = 1;
+}
+
+service TelemetryService {
+  rpc SendMemoryInfo (MemoryRequest) returns (MemoryInfo);  // Use Empty for request
+  rpc SendDistroInfo (DistroRequest) returns (DistroInfo);  // Use Empty for request
+}
+
