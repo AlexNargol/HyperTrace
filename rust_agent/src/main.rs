@@ -30,7 +30,7 @@ impl TelemetryService for MyTelemetryService {
         // Extract MemoryInfo from the request
         let _memory_info = request.into_inner();
 
-        // Assume we're fetching actual memory data from the system or using some method
+        // Use sysinfo to get available memory, used memory, and total 
         let free_memory: u64 = system.available_memory();
         let used_memory: u64 = system.used_memory();
         let total_memory: u64 = system.total_memory();
